@@ -172,7 +172,7 @@
     nombreInput.addEventListener("input", function () {
         const maxCaracteres = 50; // Establece el número máximo de caracteres permitidos
         if (nombreInput.value.length > maxCaracteres) {
-        nombreInput.setCustomValidity(`El nombre no debe exceder los ${maxCaracteres} caracteres.`);
+            nombreInput.setCustomValidity(`El nombre no debe exceder los ${maxCaracteres} caracteres.`);
         } else {
             nombreInput.setCustomValidity("");
         }
@@ -193,6 +193,13 @@
     const emailEnviado = document.getElementById("emailEnviado");
     const mensajeEnviado = document.getElementById("mensajeEnviado");
 
+    function limpiarCampos() {
+        nombreInput.value = "";
+        document.getElementById("email").value = "";
+        telefonoInput.value = "";
+        document.getElementById("mensaje").value = "";
+    }
+
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
         const nombre = nombreInput.value;
@@ -206,6 +213,8 @@
             emailEnviado.textContent = email;
             telefonoEnviado.textContent = telefono;
             mensajeEnviado.textContent = mensaje;
+
+            limpiarCampos(); // Llama a la función para limpiar los campos
         }
     });
 
@@ -249,15 +258,13 @@
         erroresDiv.innerHTML = "<h2>Errores:</h2><ul>";
         errores.forEach(function (error) {
         erroresDiv.innerHTML += `<li>${error}</li>`;
-    });
+        });
         erroresDiv.innerHTML += "</ul>";
         resultado.innerHTML = "";
         resultado.appendChild(erroresDiv);
         resultado.style.display = "block";
     }
 
-
-    
     
     </script>
     
