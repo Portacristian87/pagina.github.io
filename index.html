@@ -166,75 +166,97 @@
     mostrarImagen();
     
     
+    const nombreInput = document.getElementById("nombre");
+    const telefonoInput = document.getElementById("telefono");
+
+    nombreInput.addEventListener("input", function () {
+        const maxCaracteres = 50; // Establece el número máximo de caracteres permitidos
+        if (nombreInput.value.length > maxCaracteres) {
+        nombreInput.setCustomValidity(`El nombre no debe exceder los ${maxCaracteres} caracteres.`);
+        } else {
+            nombreInput.setCustomValidity("");
+        }
+    });
+
+    telefonoInput.addEventListener("input", function () {
+        const telefonoRegex = /^\d{10}$/; // Expresión regular para un número de teléfono de 10 dígitos
+        if (!telefonoRegex.test(telefonoInput.value)) {
+            telefonoInput.setCustomValidity("El número de teléfono debe tener 10 dígitos numéricos.");
+        } else {
+            telefonoInput.setCustomValidity("");
+        }
+    });
+
     const formulario = document.getElementById("formularioContacto");
-            const resultado = document.getElementById("resultado");
-            const nombreEnviado = document.getElementById("nombreEnviado");
-            const emailEnviado = document.getElementById("emailEnviado");
-            const telefonoEnviado = document.getElementById("telefonoEnviado");
-            const mensajeEnviado = document.getElementById("mensajeEnviado");
-    
+    const resultado = document.getElementById("resultado");
+    const nombreEnviado = document.getElementById("nombreEnviado");
+    const emailEnviado = document.getElementById("emailEnviado");
+    const mensajeEnviado = document.getElementById("mensajeEnviado");
+
     formulario.addEventListener("submit", function (event) {
-            event.preventDefault();
-            const nombre = document.getElementById("nombre").value;
-            const email = document.getElementById("email").value;
-            const telefono = document.getElementById("telefono").value;
-            const mensaje = document.getElementById("mensaje").value;
-    
+        event.preventDefault();
+        const nombre = nombreInput.value;
+        const email = document.getElementById("email").value;
+        const telefono = telefonoInput.value;
+        const mensaje = document.getElementById("mensaje").value;
+
         if (validarFormulario(nombre, email, telefono, mensaje)) {
             resultado.style.display = "block";
             nombreEnviado.textContent = nombre;
             emailEnviado.textContent = email;
             telefonoEnviado.textContent = telefono;
             mensajeEnviado.textContent = mensaje;
-            }
-        });
-    
+        }
+    });
+
     function validarFormulario(nombre, email, telefono, mensaje) {
         let errores = [];
-    
+
         if (!nombre) {
             errores.push("El campo Nombre es obligatorio.");
         }
-    
+
         if (!email) {
             errores.push("El campo Email es obligatorio.");
         } else if (!validarEmail(email)) {
             errores.push("El formato del Email es incorrecto.");
         }
-    
+
         if (!telefono) {
             errores.push("El campo Teléfono es obligatorio.");
         }
-    
+
         if (!mensaje) {
             errores.push("El campo Mensaje es obligatorio.");
         }
-    
+
         if (errores.length > 0) {
             mostrarErrores(errores);
             return false;
         }
-    
+
         return true;
     }
-    
+
     function validarEmail(email) {
-            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regexEmail.test(email);
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regexEmail.test(email);
     }
-    
+
     function mostrarErrores(errores) {
-            const erroresDiv = document.createElement("div");
-            erroresDiv.className = "error";
-            erroresDiv.innerHTML = "<h2>Errores:</h2><ul>";
-            errores.forEach(function (error) {
-            erroresDiv.innerHTML += `<li>${error}</li>`;
-        });
+        const erroresDiv = document.createElement("div");
+        erroresDiv.className = "error";
+        erroresDiv.innerHTML = "<h2>Errores:</h2><ul>";
+        errores.forEach(function (error) {
+        erroresDiv.innerHTML += `<li>${error}</li>`;
+    });
         erroresDiv.innerHTML += "</ul>";
         resultado.innerHTML = "";
         resultado.appendChild(erroresDiv);
         resultado.style.display = "block";
     }
+
+
     
     
     </script>
