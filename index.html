@@ -55,7 +55,7 @@
                     <br>
                     <label class="labelProv" for="provincia">Provincia:</label>
                     <select id="provincia" name="provincia">
-                        <option value="San Luis" style="background-color: rgb(72, 211, 72) color black;">San Luis</option>
+                        <option value="San Luis">San Luis</option>
                         <option value="Buenos Aires">Buenos Aires</option>
                         <option value="Catamarca">Catamarca</option>
                         <option value="Córdoba">Córdoba</option>
@@ -76,11 +76,16 @@
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" required></textarea>
                     <br>
-                    <label>¿Que tipo de <b>lista de precio</b> desea recibir al correo?:</label>
-                    <input type="checkbox" id="precioMayorista" name="precio" value="mayorista">
-                    <label for="precioMayorista">Precio Mayorista</label>
-                    <input type="checkbox" id="precioMinorista" name="precio" value="minorista">
-                    <label for="precioMinorista">Precio Minorista</label>
+                    <label>¿Qué tipo de <b>lista de precio</b> desea recibir al correo?</label>
+                    <div class="checkbox-container">
+                      <input type="checkbox" id="precioMayorista" name="precio" value="mayorista">
+                      <label for="precioMayorista" class="checkbox-label">Precio Mayorista</label>
+                    </div>
+                    
+                    <div class="checkbox-container">
+                      <input type="checkbox" id="precioMinorista" name="precio" value="minorista">
+                      <label for="precioMinorista" class="checkbox-label">Precio Minorista</label>
+                    </div>                    
                     <br>
 
                     <button type="submit">Enviar</button>
@@ -261,10 +266,6 @@
 
         if (checkboxMinorista.checked) {
             precioSeleccionado.push(checkboxMinorista.value);
-        }
-
-        if (!validarFormulario(nombre, email, telefono, mensaje, provincia, precioSeleccionado)) {
-            event.preventDefault(); // Detiene el envío del formulario
         }
 
         if (validarFormulario(nombre, email, telefono, mensaje, provincia, precioEnviado)) {

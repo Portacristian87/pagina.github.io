@@ -140,8 +140,20 @@ option {
     font-size: 18px; 
 }
 
-
-
+.checkbox-container {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+  
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; 
+}
+  
+.checkbox-container .checkbox-label {
+    font-weight: bold; 
+}
+  
 .carrusel {
     display: flex;
     justify-content: space-between;
