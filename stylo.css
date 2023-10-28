@@ -121,6 +121,17 @@ textarea {
     border-radius: 5px;
 }
 
+select {
+    width: 200px; 
+}
+
+option {
+    background-color: lightgray; 
+    color: black; 
+    font-size: 16px; 
+}
+
+
 
 .carrusel {
     display: flex;
