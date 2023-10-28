@@ -53,7 +53,6 @@
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                     <br>
-                    <br>
                     <label class="provincia" for="provincia">Provincia:</label>
                     <select id="provincia" name="provincia">
                         <option value="Selecciona">selecciona</option>
@@ -255,7 +254,7 @@
             errores.push("El campo Mensaje es obligatorio.");
         }
 
-        if (!provincia || provincia === "Selecciona una provincia") {
+        if (!provincia || provincia === seleccion.value || provincia === "Selecciona una provincia") {
         errores.push("Debes seleccionar una provincia.");
         }
 

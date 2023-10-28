@@ -107,7 +107,7 @@ form {
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 input[type="text"],
@@ -126,8 +126,8 @@ textarea {
     width: 100px; 
     text-align: right; 
     margin-right: 0px;
-    margin-bottom: 10px; 
-  }
+     
+}
 
 select {
     display: inline-block;
@@ -137,7 +137,7 @@ select {
 option {
     background-color: #ccc; 
     color: rgb(212, 92, 172); 
-    font-size: 25px; 
+    font-size: 18px; 
 }
 
 
