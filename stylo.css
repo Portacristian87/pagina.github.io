@@ -121,7 +121,7 @@ textarea {
     border-radius: 5px;
 }
 
-.provincia {
+.labelProv {
     display: inline-block;
     width: 100px; 
     text-align: right; 
