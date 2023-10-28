@@ -121,15 +121,22 @@ textarea {
     border-radius: 5px;
 }
 
+#provincia {
+    display: inline-block;
+    width: 100px; 
+    text-align: right; 
+    margin-right: 10px; 
+  }
+
 select {
     display: inline-block;
     width: 200px; 
 }
 
 option {
-    background-color: lightgray; 
-    color: black; 
-    font-size: 16px; 
+    background-color: #ccc; 
+    color: rgb(212, 92, 172); 
+    font-size: 25px; 
 }
 
 
