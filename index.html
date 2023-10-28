@@ -55,10 +55,12 @@
                     <br>
                     <label class="labelProv" for="provincia">Provincia:</label>
                     <select id="provincia" name="provincia">
-                        <option value="Selecciona">selecciona</option>
                         <option value="Buenos Aires">Buenos Aires</option>
                         <option value="Córdoba">Córdoba</option>
+                        <option value="Mendoza">Mendoza</option>
+                        <option value="San Juan">San Juan</option>
                         <option value="San Luis">San Luis</option>
+                        <option value="Tierra del Fuego">Tierra del Fuego</option>
                         <!-- Solo estan algunas provincias a manera de ejemplo -->
                     </select>
                     <br>
@@ -195,17 +197,6 @@
             telefonoInput.setCustomValidity("El número de teléfono debe tener 10 dígitos numéricos.");
         } else {
             telefonoInput.setCustomValidity("");
-        }
-    });
-
-    provinciaSelect.addEventListener("change", function () {
-        const selectedValue = provinciaSelect.value; 
-
-        if (selectedValue === "Selecciona") {
-            alert("Por favor, selecciona una provincia.");
-            provinciaSelect.setCustomValidity("Por favor, selecciona una provincia.");
-        } else {
-            provinciaSelect.setCustomValidity("");
         }
     });
 
