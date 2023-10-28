@@ -199,15 +199,15 @@
     });
 
     provinciaSelect.addEventListener("change", function () {
-    const selectedValue = provinciaSelect.value; 
+        const selectedValue = provinciaSelect.value; 
 
-    if (selectedValue === "Selecciona") {
-        alert("Por favor, selecciona una provincia.");
-        provinciaSelect.setCustomValidity("Por favor, selecciona una provincia.");
-    } else {
-        provinciaSelect.setCustomValidity("");
-    }
-});
+        if (selectedValue === "Selecciona") {
+            alert("Por favor, selecciona una provincia.");
+            provinciaSelect.setCustomValidity("Por favor, selecciona una provincia.");
+        } else {
+            provinciaSelect.setCustomValidity("");
+        }
+    });
 
     const formulario = document.getElementById("formularioContacto");
     const resultado = document.getElementById("resultado");
