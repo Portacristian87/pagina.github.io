@@ -121,11 +121,12 @@ textarea {
     border-radius: 5px;
 }
 
-#provincia {
+.provincia {
     display: inline-block;
     width: 100px; 
     text-align: right; 
-    margin-right: 10px; 
+    margin-right: 0px;
+    margin-bottom: 10px; 
   }
 
 select {
