@@ -53,6 +53,15 @@
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                     <br>
+                    <br>
+                    <label for="provincia">Provincia:</label>
+                    <select id="provincia" name="provincia">
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="San Luis">San Luis</option>
+                        <!-- Solo estan algunas provincias a manera de ejemplo -->
+                    </select>
+                    <br>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                     <br>
@@ -168,6 +177,7 @@
     
     const nombreInput = document.getElementById("nombre");
     const telefonoInput = document.getElementById("telefono");
+    const provinciaSelect = document.getElementById("provincia");
 
     nombreInput.addEventListener("input", function () {
         const maxCaracteres = 50; // Establece el número máximo de caracteres permitidos
@@ -192,12 +202,14 @@
     const nombreEnviado = document.getElementById("nombreEnviado");
     const emailEnviado = document.getElementById("emailEnviado");
     const mensajeEnviado = document.getElementById("mensajeEnviado");
+    const provinciaEnviada = document.getElementById("provinciaEnviada");
 
     function limpiarCampos() {
         nombreInput.value = "";
         document.getElementById("email").value = "";
         telefonoInput.value = "";
         document.getElementById("mensaje").value = "";
+        provinciaSelect.selectedIndex = 0;
     }
 
     formulario.addEventListener("submit", function (event) {
@@ -206,13 +218,15 @@
         const email = document.getElementById("email").value;
         const telefono = telefonoInput.value;
         const mensaje = document.getElementById("mensaje").value;
+        const provincia = provinciaSelect.options[provinciaSelect.selectedIndex].value;
 
-        if (validarFormulario(nombre, email, telefono, mensaje)) {
+        if (validarFormulario(nombre, email, telefono, mensaje, provincia)) {
             resultado.style.display = "block";
             nombreEnviado.textContent = nombre;
             emailEnviado.textContent = email;
             telefonoEnviado.textContent = telefono;
             mensajeEnviado.textContent = mensaje;
+            provinciaEnviada.textContent = provincia;
 
             limpiarCampos(); // Llama a la función para limpiar los campos
         }
@@ -237,6 +251,10 @@
 
         if (!mensaje) {
             errores.push("El campo Mensaje es obligatorio.");
+        }
+
+        if (!provincia || provincia === "Selecciona una provincia") {
+        errores.push("Debes seleccionar una provincia.");
         }
 
         if (errores.length > 0) {
