@@ -213,6 +213,20 @@
         }
     });
 
+    checkboxMayorista.addEventListener("change", function () {
+        if (checkboxMayorista.checked) {
+            // Si el usuario selecciona Precio Mayorista, desmarca Precio Minorista
+            checkboxMinorista.checked = false;
+        }
+    });
+
+    checkboxMinorista.addEventListener("change", function () {
+        if (checkboxMinorista.checked) {
+            // Si el usuario selecciona Precio Minorista, desmarca Precio Mayorista
+            checkboxMayorista.checked = false;
+        }
+    });
+
     const formulario = document.getElementById("formularioContacto");
     const resultado = document.getElementById("resultado");
     const nombreEnviado = document.getElementById("nombreEnviado");
@@ -249,20 +263,25 @@
             precioSeleccionado.push(checkboxMinorista.value);
         }
 
-        if (validarFormulario(nombre, email, telefono, mensaje, provincia)) {
+        if (!validarFormulario(nombre, email, telefono, mensaje, provincia, precioSeleccionado)) {
+            event.preventDefault(); // Detiene el envío del formulario
+        }
+
+        if (validarFormulario(nombre, email, telefono, mensaje, provincia, precioEnviado)) {
             resultado.style.display = "block";
             nombreEnviado.textContent = nombre;
             emailEnviado.textContent = email;
             telefonoEnviado.textContent = telefono;
             mensajeEnviado.textContent = mensaje;
             provinciaEnviada.textContent = provincia;
+            precioEnviado.textContent = precioSeleccionado;
             
 
             limpiarCampos(); // Llama a la función para limpiar los campos
         }
     });
 
-    function validarFormulario(nombre, email, telefono, mensaje) {
+    function validarFormulario(nombre, email, telefono, mensaje, precioSeleccionado) {
         let errores = [];
 
         if (!nombre) {
