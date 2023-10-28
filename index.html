@@ -55,12 +55,14 @@
                     <br>
                     <label class="labelProv" for="provincia">Provincia:</label>
                     <select id="provincia" name="provincia">
-                        <option></option>
+                        <option value="San Luis" style="background-color: rgb(72, 211, 72) color black;">San Luis</option>
                         <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Catamarca">Catamarca</option>
                         <option value="Córdoba">Córdoba</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Formosa">Formosa</option>
                         <option value="Mendoza">Mendoza</option>
                         <option value="San Juan">San Juan</option>
-                        <option value="San Luis">San Luis</option>
                         <option value="Tierra del Fuego">Tierra del Fuego</option>
                         <!-- Solo estan algunas provincias a manera de ejemplo -->
                     </select>
@@ -74,6 +76,13 @@
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" required></textarea>
                     <br>
+                    <label>¿Que tipo de <b>lista de precio</b> desea recibir al correo?:</label>
+                    <input type="checkbox" id="precioMayorista" name="precio" value="mayorista">
+                    <label for="precioMayorista">Precio Mayorista</label>
+                    <input type="checkbox" id="precioMinorista" name="precio" value="minorista">
+                    <label for="precioMinorista">Precio Minorista</label>
+                    <br>
+
                     <button type="submit">Enviar</button>
         
                 </form>
@@ -86,6 +95,7 @@
                     <p><strong>Email:</strong> <span id="emailEnviado"></span></p>
                     <p><strong>Teléfono:</strong> <span id="telefonoEnviado"></span></p>
                     <p><strong>Mensaje:</strong> <span id="mensajeEnviado"></span></p>
+                    <p><strong>Precio:</strong> <span id="precioEnviado"></span></p>
                 </div>
             </div>
 
@@ -182,6 +192,8 @@
     const nombreInput = document.getElementById("nombre");
     const telefonoInput = document.getElementById("telefono");
     const provinciaSelect = document.getElementById("provincia");
+    const checkboxMayorista = document.getElementById("precioMayorista");
+    const checkboxMinorista = document.getElementById("precioMinorista");
 
     nombreInput.addEventListener("input", function () {
         const maxCaracteres = 50; // Establece el número máximo de caracteres permitidos
@@ -207,6 +219,8 @@
     const emailEnviado = document.getElementById("emailEnviado");
     const mensajeEnviado = document.getElementById("mensajeEnviado");
     const provinciaEnviada = document.getElementById("provinciaEnviada");
+    const precioEnviado = document.getElementById("precioEnviado");
+    
 
     function limpiarCampos() {
         nombreInput.value = "";
@@ -214,6 +228,8 @@
         telefonoInput.value = "";
         document.getElementById("mensaje").value = "";
         provinciaSelect.selectedIndex = 0;
+        checkboxMayorista.checked = false;
+        checkboxMinorista.checked = false;
     }
 
     formulario.addEventListener("submit", function (event) {
@@ -223,6 +239,15 @@
         const telefono = telefonoInput.value;
         const mensaje = document.getElementById("mensaje").value;
         const provincia = provinciaSelect.options[provinciaSelect.selectedIndex].value;
+        const precioSeleccionado = [];
+
+        if (checkboxMayorista.checked) {
+            precioSeleccionado.push(checkboxMayorista.value);
+        }
+
+        if (checkboxMinorista.checked) {
+            precioSeleccionado.push(checkboxMinorista.value);
+        }
 
         if (validarFormulario(nombre, email, telefono, mensaje, provincia)) {
             resultado.style.display = "block";
@@ -231,6 +256,7 @@
             telefonoEnviado.textContent = telefono;
             mensajeEnviado.textContent = mensaje;
             provinciaEnviada.textContent = provincia;
+            
 
             limpiarCampos(); // Llama a la función para limpiar los campos
         }
@@ -259,6 +285,10 @@
 
         if (!provincia || provincia === "Selecciona una provincia") {
         errores.push("Debes seleccionar una provincia.");
+        }
+
+        if (precioSeleccionado.length === 0) {
+        errores.push("Debes seleccionar al menos una opción de precio.");
         }
 
         if (errores.length > 0) {
